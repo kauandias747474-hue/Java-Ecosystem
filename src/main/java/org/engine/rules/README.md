@@ -1,35 +1,56 @@
-# ⚖️ Business Rules Engine (Policy Layer)
+# 🏛️ Business Rules Engine: International Tax (Case Study)
 
-Este módulo centraliza as regras de decisão e políticas de conformidade do ecossistema. A pasta `rules/` é onde a lógica de negócio complexa é traduzida em código executável, separada das entidades de domínio para permitir maior flexibilidade e manutenção.
+[PT-BR] Este repositório apresenta o `InternationalTax.java`, uma **Proof of Concept (PoC)** que demonstra como desacoplar regras fiscais complexas do núcleo do sistema. 
 
-## 📝 O que são Business Rules?
-
-Diferente das regras fundamentais do domínio, as **Business Rules** representam políticas que podem variar conforme o contexto, a legislação ou o país. O `InternationalTax.java` é o exemplo perfeito: a lógica de como o dinheiro é representado não muda (Domínio), mas o cálculo de imposto (Regra) muda dependendo de onde o cliente está.
-
-## 🚀 Funcionalidades
-
-* **Cálculo de Tributação Internacional**: Gerencia alíquotas e regras fiscais para transações em diferentes jurisdições.
-* **Isolamento de Políticas**: Permite alterar uma regra de cálculo ou uma política de desconto sem tocar na estrutura principal do motor financeiro.
-* **Validação de Conformidade**: Garante que as operações sigam as normas vigentes (ex: retenção de impostos ou limites de transferência).
+[EN] This repository features `InternationalTax.java`, a **Proof of Concept (PoC)** demonstrating how to decouple complex tax rules from the system's core.
 
 ---
 
-## 🛠️ Aplicação em Projetos Freelance
+## 📄 O que é o International Tax? / What is International Tax?
 
-Para clientes internacionais, a gestão de **International Tax** é um ponto crítico. Ter este módulo organizado demonstra:
-1.  **Visão Global**: Capacidade de desenvolver sistemas que operam em múltiplos mercados e moedas.
-2.  **Manutenibilidade**: Se uma lei mudar no próximo mês, você altera apenas um arquivo nesta pasta, garantindo que o software do cliente continue operando sem bugs.
-3.  **Escalabilidade de Negócio**: Facilita a expansão do sistema para novos países apenas adicionando novas "Policies".
+**[PT-BR]** É uma implementação do **Strategy Pattern** focada em transações cross-border. Ele atua como um motor de decisão que aplica alíquotas e regras de conformidade baseadas na localização do cliente e do provedor.
+**[EN]** It is a **Strategy Pattern** implementation focused on cross-border transactions. It acts as a decision engine that applies tax rates and compliance rules based on the customer's and provider's locations.
 
 ---
 
-## 🏗️ Princípios de Design
+## 🎯 Por que, Para que e Como? / Why, What for, and How?
 
-1.  **Strategy Pattern**: As regras são implementadas de forma que possam ser trocadas em tempo de execução dependendo do contexto da transação.
-2.  **Transparência**: Toda regra aplicada é documentada e pode ser auditada pelo `AuditLogger`, garantindo que o cliente saiba exatamente por que um valor foi aplicado.
-3.  **Testabilidade**: Por ser lógica pura, as regras nesta pasta são ideais para testes unitários rigorosos, garantindo precisão matemática absoluta.
+### 🧩 O que ele faz? / What does it do?
+- **[PT]** Traduz legislações fiscais (como VAT, ICMS, Sales Tax) em código executável e isolado.
+- **[EN]** Translates tax legislations (such as VAT, ICMS, Sales Tax) into isolated, executable code.
+
+### 💡 Por que ele faz? / Why does it do it?
+- **[PT]** Para evitar o "Hardcode". Em vez de `if/else` infinitos no código principal, as regras são injetadas. Isso protege o **Core Domain** de mudanças constantes na lei.
+- **[EN]** To avoid "Hardcoding". Instead of infinite `if/else` statements in the main code, rules are injected. This protects the **Core Domain** from constant changes in tax law.
+
+### 🚀 Pra que ele faz? / What is it for?
+- **[PT]** Para garantir **Escalabilidade de Negócio**. Permite que uma empresa entre em um novo país apenas adicionando uma nova "Policy", sem precisar reescrever o motor financeiro.
+- **[EN]** To ensure **Business Scalability**. It allows a company to enter a new country just by adding a new "Policy" without rewriting the financial engine.
 
 ---
 
-## 🚀 Por que isso é importante?
-A pasta `rules/` mostra que você não "hardcodeia" lógica importante dentro dos motores. Você cria um sistema de **Políticas Flexíveis**. Isso é o que grandes empresas buscam em desenvolvedores sêniores: a capacidade de construir software que se adapta às mudanças do mercado sem precisar ser reescrito.
+## 🏗️ Pilares Técnicos / Technical Pillars
+
+
+
+1.  **Imutabilidade (Records):** Garante que o cálculo não seja alterado durante o fluxo. / *Ensures the calculation isn't altered during the flow.*
+2.  **Precisão (BigDecimal):** Integridade centavo a centavo em moedas estrangeiras. / *Cent-by-cent integrity in foreign currencies.*
+3.  **Processamento Paralelo:** Capacidade de processar milhares de taxas simultaneamente via Threads. / *Ability to process thousands of rates simultaneously via Threads.*
+
+---
+
+## 🛠️ Tecnologias / Tech Stack
+
+| Categoria / Category | Tecnologias / Concepts |
+| :--- | :--- |
+| **Strategy Pattern** | Desacoplamento de regras fiscais. / Decoupling tax rules. |
+| **Java 17+** | Records, Sealed Interfaces, Parallel Streams. |
+| **Defensive Programming** | Validação Fail-Fast e cálculos imutáveis. / Fail-Fast validation. |
+
+---
+
+## 🧠 Mindset Sênior / Senior Mindset
+
+**[PT-BR]** Ter o `InternationalTax.java` organizado demonstra visão global. Se uma lei mudar amanhã, você altera apenas um arquivo, garantindo manutenibilidade e transparência para auditorias.
+**[EN]** Having `InternationalTax.java` organized demonstrates a global vision. If a law changes tomorrow, you only update one file, ensuring maintainability and audit transparency.
+
