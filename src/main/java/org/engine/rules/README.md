@@ -1,61 +1,51 @@
 # 🏛️ Business Rules Engine: International Tax (Case Study)
 
-> **[PT-BR]** Este repositório apresenta o `InternationalTax.java`, uma **Proof of Concept (PoC)** que demonstra como desacoplar regras fiscais complexas do núcleo do sistema.
+> **[PT-BR]** Proof of Concept (PoC) focada em desacoplamento de regras fiscais complexas através de Clean Code e Design Patterns.
 >
-> **[EN]** This repository features `InternationalTax.java`, a **Proof of Concept (PoC)** demonstrating how to decouple complex tax rules from the system's core.
+> **[EN]** Proof of Concept (PoC) focused on decoupling complex tax rules using Clean Code and Design Patterns.
 
 ---
 
-## 📄 O que é o International Tax? / What is International Tax?
+## 📄 Arquitetura e Clean Code / Architecture & Clean Code
 
-**[PT-BR]** É uma implementação do **Strategy Pattern** focada em transações *cross-border*. Ele atua como um motor de decisão que aplica alíquotas e regras de conformidade baseadas na localização do cliente e do provedor. 
+Este projeto foi construído aplicando os princípios do **Uncle Bob (Robert C. Martin)** e **Joshua Bloch**, focando em:
 
-**[EN]** It is a **Strategy Pattern** implementation focused on *cross-border* transactions. It acts as a decision engine that applies tax rates and compliance rules based on the customer's and provider's locations.
+### 1. S.O.L.I.D. Principles 🧩
+* **Single Responsibility (SRP):** O motor (`TaxEngine`) apenas gerencia o fluxo; cada estratégia (`TaxStrategy`) cuida de sua regra específica.
+* **Open/Closed (OCP):** Novas legislações tributárias são adicionadas sem modificar o código fonte existente.
+* **Dependency Inversion (DIP):** O sistema depende de abstrações (interfaces), não de implementações concretas.
 
+### 2. Engenharia Defensiva & Fail-Fast 🛡️
+* **Validação Precoce:** O sistema valida a integridade dos dados (nulos ou negativos) no momento da criação do objeto.
+* **Imutabilidade:** Uso de `Java Records` para garantir que um cálculo fiscal, uma vez realizado, jamais seja alterado (**Thread-Safety**).
 
-
----
-
-## 🎯 Por que, Para que e Como? / Why, What for, and How?
-
-### 🧩 O que ele faz? / What does it do?
-* **[PT]** Traduz legislações fiscais (como VAT, ICMS, Sales Tax) em código executável e isolado.
-* **[EN]** Translates tax legislations (such as VAT, ICMS, Sales Tax) into isolated, executable code.
-
-### 💡 Por que ele faz? / Why does it do it?
-* **[PT]** Para evitar o "Hardcode". Em vez de `if/else` infinitos no código principal, as regras são injetadas. Isso protege o **Core Domain** de mudanças constantes na lei.
-* **[EN]** To avoid "Hardcoding". Instead of infinite `if/else` statements in the main code, rules are injected. This protects the **Core Domain** from constant changes in tax law.
-
-### 🚀 Pra que ele faz? / What is it for?
-* **[PT]** Para garantir **Escalabilidade de Negócio**. Permite que uma empresa entre em um novo país apenas adicionando uma nova "Policy", sem precisar reescrever o motor financeiro.
-* **[EN]** To ensure **Business Scalability**. It allows a company to enter a new country just by adding a new "Policy" without rewriting the financial engine.
+### 3. Legibilidade e Manutenibilidade 📖
+* **Eliminação de Hardcoding:** Regras de negócio são injetadas, tornando o código principal limpo e focado no domínio.
+* **Nomes Significativos:** Variáveis e métodos que expressam claramente sua intenção, eliminando a necessidade de comentários excessivos.
 
 ---
 
 ## 🏗️ Pilares Técnicos / Technical Pillars
 
-* **Imutabilidade (Records):** Garante que o cálculo não seja alterado durante o fluxo. / *Ensures the calculation isn't altered during the flow.*
-* **Precisão (BigDecimal):** Integridade centavo a centavo em moedas estrangeiras. / *Cent-by-cent integrity in foreign currencies.*
-* **Processamento Paralelo:** Capacidade de processar milhares de taxas simultaneamente via Threads. / *Ability to process thousands of rates simultaneously via Threads.*
+* **Precisão Bancária:** Uso estrito de `BigDecimal` para evitar erros de arredondamento de ponto flutuante.
+* **High Performance:** Processamento em massa utilizando `Parallel Streams` para otimização de CPU em grandes lotes de faturas.
+* **Thread-Safe Registry:** Uso de `ConcurrentHashMap` para garantir a segurança em ambientes multithread de alta concorrência.
 
 ---
 
 ## 🛠️ Tecnologias / Tech Stack
 
-| Categoria / Category | Tecnologias / Concepts | Descrição / Description |
-| :--- | :--- | :--- |
-| **Design Pattern** | **Strategy Pattern** | Desacoplamento de regras fiscais. / Decoupling tax rules. |
-| **Java Moderno** | **Records, Sealed Interfaces, Parallel Streams** | Uso de Java 17+ para performance e legibilidade. / Java 17+ for performance. |
-| **Engenharia Defensiva** | **Fail-Fast Validation** | Validação rigorosa na entrada de dados. / Strict entry-point validation. |
+| Conceito / Concept | Implementação / Implementation |
+| :--- | :--- |
+| **Strategy Pattern** | Desacoplamento de algoritmos fiscais. |
+| **Java 17+ Records** | DTOs imutáveis e código conciso. |
+| **Functional Interfaces** | Uso de Lambdas para reduzir o boilerplate code. |
+| **BigDecimal API** | Precisão absoluta para transações financeiras. |
 
 ---
 
-## 🧠 Mindset Sênior / Senior Mindset
+**[PT-BR]** Este projeto demonstra a capacidade de transformar requisitos de negócio (leis fiscais) em uma arquitetura resiliente. Se a alíquota mudar ou um novo país for adicionado, o impacto na manutenção é próximo de zero.
 
-**[PT-BR]** Ter o `InternationalTax.java` organizado demonstra visão global. Se uma lei mudar amanhã, você altera apenas um arquivo, garantindo manutenibilidade e transparência para auditorias. 
-
-**[EN]** Having `InternationalTax.java` organized demonstrates a global vision. If a law changes tomorrow, you only update one file, ensuring maintainability and audit transparency.
+**[EN]** This project demonstrates the ability to transform business requirements into a resilient architecture. If tax rates change or a new country is added, the maintenance impact is near zero.
 
 ---
-
-_Desenvolvido como um Showcase Técnico de Engenharia de Software._
