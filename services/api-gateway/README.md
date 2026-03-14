@@ -1,119 +1,84 @@
 # 🚪 API Gateway Service
 
-## 🇧🇷 Português
+## 🇧🇷 Português | 🇺🇸 English
+
+---
 
 ### 🛡️ Pilar: Segurança de Borda & Roteamento Centralizado
-O **API Gateway** atua como o *Single Point of Entry* (Ponto Único de Entrada) do ecossistema. Ele funciona como um orquestrador de tráfego que blinda os motores de cálculo, garantindo que apenas requisições legítimas, autenticadas e "limpas" cheguem à camada de negócio.
+**Pillar: Edge Security & Centralized Routing**
 
+O **API Gateway** atua como o *Single Point of Entry* do ecossistema, funcionando como um orquestrador de tráfego que blinda os motores de cálculo.
+*The **API Gateway** acts as the Single Point of Entry for the ecosystem, functioning as a traffic orchestrator that shields the calculation engines.*
 
+---
 
-#### ⚙️ Responsabilidades Core
-* **Roteamento Dinâmico:** Integração nativa com *Service Discovery* para localizar instâncias sem IPs estáticos.
-* **Terminação TLS/SSL:** Centralização de certificados para comunicação criptografada (HTTPS).
-* **Autenticação Centralizada:** Validação de tokens (JWT/OAuth2) na borda.
-* **Observabilidade:** Injeção de headers para rastreio distribuído.
+### ⚙️ Responsabilidades Core | Core Responsibilities
 
-#### 🛡️ Hardening & Security Features
-| Feature | Mecanismo | Benefício |
+* **Roteamento Dinâmico (Dynamic Routing):** Integração nativa com *Service Discovery* (Eureka/Consul) para localizar instâncias sem IPs estáticos.
+* **Terminação TLS/SSL (TLS Termination):** Centralização de certificados para comunicação criptografada (HTTPS).
+* **Autenticação Centralizada (Auth Edge):** Validação de tokens (JWT/OAuth2) na borda.
+* **Observabilidade (Observability):** Injeção de headers para rastreio distribuído.
+
+---
+
+### 🛡️ Hardening & Security Features
+
+| Feature | Mecanismo / Mechanism | Benefício / Benefit |
 | :--- | :--- | :--- |
-| **Rate Limiting** | Algoritmo Token Bucket | Proteção anti-DoS e controle de cota por IP. |
-| **Request Sanitization** | Filtro de Mutação | Bloqueio de SQL Injection e XSS na borda. |
-| **Correlation ID** | Injeção de UUID | Rastreabilidade total via `ContextInterceptor`. |
+| **Rate Limiting** | Token Bucket Algorithm | Proteção anti-DoS e controle de cota por IP. / Anti-DoS protection. |
+| **Request Sanitization** | Mutation Filter | Bloqueio de SQL Injection e XSS na borda. / Block attacks at the edge. |
+| **Correlation ID** | UUID Injection | Rastreabilidade total via `ContextInterceptor`. / Full traceability. |
 
 ---
 
-## 🇺🇸 English
+### 📘 Fundamentação Teórica | Theoretical Foundation
 
-### 🛡️ Pillar: Edge Security & Centralized Routing
-The **API Gateway** acts as the *Single Point of Entry* for the ecosystem. It functions as a traffic orchestrator that shields the calculation engines, ensuring only legitimate, authenticated, and "sanitized" requests reach the business layer.
+#### 📚 Influências Literárias | Literary Influences
+1.  **"Building Microservices" (Sam Newman):** Aplicação do padrão **Edge Enclosure**. Preocupações transversais não poluem a lógica de negócio. / *Cross-cutting concerns do not pollute business logic.*
+2.  **"Clean Architecture" (Uncle Bob):** Mantém o **Core** (motores de cálculo) independente de detalhes de entrega (HTTP/JSON). / *Keeps the Core independent of delivery details.*
+3.  **"Release It!" (Michael Nygard):** Implementação de **Bulkheads** (anteparos) para evitar o efeito cascata. / *Implementation of bulkheads to prevent cascading failures.*
 
-#### ⚙️ Core Responsibilities
-* **Dynamic Routing:** Native integration with *Service Discovery* to locate instances without static IPs.
-* **TLS/SSL Termination:** Centralized certificate management for encrypted communication (HTTPS).
-* **Centralized Authentication:** Edge-level token validation (JWT/OAuth2).
-* **Observability:** Header injection for distributed tracing.
-
-#### 🛡️ Hardening & Security Features
-| Feature | Mechanism | Benefit |
-| :--- | :--- | :--- |
-| **Rate Limiting** | Token Bucket Algorithm | anti-DoS protection and per-IP quota control. |
-| **Request Sanitization** | Mutation Filter | Block SQL Injection and XSS at the edge. |
-| **Correlation ID** | UUID Injection | Full traceability via `ContextInterceptor`. |
-
----
-## 📘 Fundamentação Teórica & Design Patterns
-
-A implementação deste API Gateway não é apenas uma escolha tecnológica, mas uma aplicação de princípios consolidados na engenharia de software moderna.
-
-### 📚 Influências Literárias e Arquiteturais
-
-1.  **"Building Microservices" (Sam Newman):** O Gateway aplica o padrão **BFF (Backend for Frontends)** e o conceito de **Edge Enclosure**. Newman defende que preocupações transversais (*cross-cutting concerns*) como autenticação e logging não devem poluir a lógica de negócio dos microserviços.
-    
-2.  **"Clean Architecture" (Uncle Bob):** Ao isolar a sanitização e o roteamento na borda, mantemos o *Core* do sistema (motores de cálculo) independente de detalhes de entrega (HTTP, JSON, Headers). Isso garante que o motor de cálculo "não saiba" que está na web, facilitando testes e portabilidade.
-
-3.  **"Release It!" (Michael Nygard):** A implementação de **Rate Limiting** e **Circuit Breakers** no Gateway atua como um "Anteparo" (*Bulkhead*), garantindo que uma falha ou sobrecarga em um serviço não derrube todo o ecossistema.
-
-
+#### ☕ Conceitos Java Aplicados | Java Concepts Applied
+* **Project Reactor:** Uso de `Mono<Void>` e `Flux` para processamento não-bloqueante (Non-blocking I/O).
+* **Ordered Filters:** Interface `Ordered` garantindo que a **Segurança** preceda o **Roteamento** (Fail-Fast).
+* **Imutabilidade:** Uso de `exchange.mutate()` para manipulação segura de estados da requisição.
 
 ---
 
-### ☕ Conceitos Java Aplicados
+### 🔄 Fluxo de Execução | Execution Workflow
 
-* **Programação Reativa (Project Reactor):** Utilizamos `Mono<Void>` e `Flux`, permitindo que o Gateway processe milhares de requisições simultâneas com um overhead de memória mínimo (Non-blocking I/O).
-* **Ordered Filters:** Implementamos a interface `Ordered` do Spring para garantir que a **Segurança (Sanitização)** ocorra antes de qualquer tentativa de **Roteamento**, seguindo o princípio de *Fail-Fast*.
-* **Mutabilidade Controlada:** O uso de `exchange.mutate()` segue as boas práticas de imutabilidade do Java moderno, criando uma nova instância da requisição com os headers injetados (como o `Correlation ID`) sem alterar o estado original de forma insegura.
 
----
 
-### 🔄 Fluxo de Execução (Workflow)
-
-1.  **Ingress:** A requisição chega via TLS.
-2.  **Pre-Filter (Identification):** O `CorrelationIdFilter` gera o ID único.
-3.  **Security Filter (Guard):** O `SanitizationFilter` valida o payload contra ataques.
-4.  **Routing:** O Gateway consulta o *Service Discovery* e encaminha a requisição "limpa" para o motor de cálculo.
-5.  **Post-Filter:** O tempo de resposta é logado e os headers sensíveis de infraestrutura são removidos antes de retornar ao cliente.
+1.  **Ingress:** Requisição chega via TLS. / *Request arrives via TLS.*
+2.  **Pre-Filter (Identification):** `TraceabilityFilter` gera o ID único. / *Generates unique ID.*
+3.  **Security Filter (Guard):** `SecuritySanitizationFilter` valida o payload. / *Validates payload.*
+4.  **Routing:** Gateway consulta o Service Discovery e encaminha a requisição. / *Routes to microservice.*
+5.  **Post-Filter:** Remoção de headers sensíveis e log de performance. / *Sensitive header stripping.*
 
 ---
 
-## 🇺🇸 Theoretical Foundation & Design Patterns
+### 🛠️ Roadmap de Desenvolvimento | Development Roadmap
 
-### 📚 Literary & Architectural Influences
+#### 1. Global Traceability Filter (`TraceabilityFilter.java`)
+Implementação de um filtro de alta precedência que injeta um `X-Correlation-ID`. Permite agrupamento de logs distribuídos em toda a malha de serviços.
+*Injects an X-Correlation-ID for log aggregation across the entire service mesh.*
 
-1.  **"Building Microservices" (Sam Newman):** The Gateway applies the **Edge Enclosure** concept. Newman argues that cross-cutting concerns (Auth, Logging) should not pollute microservices' business logic.
-    
-2.  **"Clean Architecture" (Uncle Bob):** By isolating sanitization at the edge, we keep the system's *Core* independent of delivery details. This ensures the calculation engine remains "unaware" of web-specific overhead.
+#### 2. Intelligent Guard (`SecuritySanitizationFilter.java`)
+Filtro customizado (WAF minimalista) que analisa o `POST Body` em busca de assinaturas de ataques como SQLi e XSS.
+*Minimalist WAF scanning POST bodies for SQLi and XSS signatures.*
 
-### ☕ Java Concepts in Action
-
-* **Reactive Programming:** Using `Mono` and `Flux` for non-blocking I/O, allowing high throughput with low resource footprint.
-* **Fail-Fast Filters:** Execution order ensures **Security Filters** run before **Routing**, protecting internal resources immediately.
-
-
-## 🛠️ Roadmap de Desenvolvimento (Proof of Concept)
-
-Para validar os pilares de **Segurança e Roteamento**, este projeto foca na implementação de três componentes críticos:
-
-### 1. Global Traceability Filter
-> **Conceito:** *Distributed Tracing*
-Implementação de um filtro de alta precedência que injeta um `X-Correlation-ID` em todas as requisições. Isso permite que ferramentas de log (como ELK Stack ou Splunk) agrupem logs de múltiplos microserviços sob um único identificador de transação.
-
-### 2. Intelligent Guard (Sanitization Layer)
-> **Conceito:** *Attack Surface Reduction*
-Um filtro customizado que analisa o `POST Body` em busca de assinaturas de ataques (SQLi/XSS). Ele atua como um Web Application Firewall (WAF) minimalista, protegendo o **Motor de Cálculo** de processar dados corrompidos ou maliciosos.
-
-### 3. Service Discovery Routing
-> **Conceito:** *Location Transparency*
-Configuração de rotas dinâmicas utilizando `lb://` (Load Balancer). O Gateway não conhece o endereço IP dos motores de cálculo; ele interage com o Service Registry para rotear o tráfego de forma resiliente, permitindo o escalonamento horizontal (Auto-scaling) sem downtime.
+#### 3. Service Discovery Routing (`GatewayRoutesConfig.java`)
+Configuração de rotas dinâmicas utilizando `lb://` (Load Balancer), garantindo transparência de localização e escalonamento horizontal.
+*Dynamic routing using load balancer protocols for location transparency.*
 
 ---
 
-## 🇺🇸 Development Roadmap
+## 🚀 Como Executar | How to Run
 
-### 1. Global Traceability Filter
-Implements a high-precedence filter injecting an `X-Correlation-ID`. It enables distributed tracing, allowing log aggregation across the entire microservices ecosystem.
-
-### 2. Intelligent Guard (Sanitization Layer)
-A custom filter that scans the `POST Body` for attack signatures (SQLi/XSS), acting as a minimalist WAF to shield the **Calculation Engine**.
-
-### 3. Service Discovery Routing
-Enables location transparency using `lb://` protocols, allowing the Gateway to route traffic dynamically to scaled calculation instances.
+1.  Certifique-se de ter o **Discovery Server** (Eureka) rodando.
+2.  Clone o repositório e execute:
+    ```bash
+    mvn clean install
+    mvn spring-boot:run
+    ```
+3.  O Gateway estará disponível em `http://localhost:8080`.
