@@ -4,9 +4,11 @@ import java.time.ZonedDateTime;
 import java.util.Objects;
 
 /**
- * 🏛️ PoC: International Tax Engine
- * Architecture: Strategy Pattern, Immutability & Clean Code
- * Java Version: 25 (Implicitly Declared Classes)
+ * PoC: International Tax Engine
+ * * Implementação de um motor de regras fiscais utilizando o Strategy Pattern 
+ * para garantir o desacoplamento entre a lógica de negócio e a execução.
+ * * @version Java 25 (Implicitly Declared Classes)
+ * @see <a href="https://en.wikipedia.org/wiki/Strategy_pattern">Strategy Pattern</a>
  */
 
 
@@ -16,7 +18,6 @@ interface InternationalTax {
     default String getName() { return "Imposto Genérico"; }
 }
 
-// 2. O RESULTADO (Record - Imutabilidade e Thread-Safety)
 record TaxResult(
         BigDecimal originalAmount,
         BigDecimal taxAmount,
