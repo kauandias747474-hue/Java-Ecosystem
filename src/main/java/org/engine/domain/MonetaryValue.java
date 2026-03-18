@@ -10,7 +10,7 @@ record MonetaryValue(BigDecimal amount, Currency currency, RoundingMode rounding
  public MonetaryValue {
   Objects.requireNonNull(amount);
   Objects.requireNonNull(currency);
-  // Garante a precisão decimal da moeda (ex: 2 casas para BRL)
+
   amount = amount.setScale(currency.getDefaultFractionDigits(), roundingMode);
  }
 
