@@ -36,20 +36,41 @@
 - **PT:** **Message-Driven:** Comunicação assíncrona via **Apache Kafka** ou **RabbitMQ**. **Cache Distribuído:** Performance de baixa latência usando **Redis Streams/Bitmaps**.
 
 ---
+## 📂 Project Architecture | Estrutura do Ecossistema
 
-## 📂 Project Structure | Estrutura do Projeto
+### **I. Infrastructure & Security (`/infrastructure`)**
+* **`/docker`**: Infrastructure as Code (IaC) with `docker-compose.yml`.
+* **`/encryption`**: Active data protection via `DataProtector.java` (AES-256).
+* **`/observability`**: Advanced monitoring with `HealthCheckProvider.java` and `LogMasker.java`.
+* **`/persistence`**: Intelligent storage management with `SchemaVersionChecker.java`.
+* **`/sanitization`**: Input defense via `InputCleaner.java`.
+* **`/security`**: 
+    * **`/audit`**: Immutable chain using `AuditChainManager.java` (SHA-256).
+    * **`/hashing`**: `TransactionHasher.java` for financial integrity.
+    * **`/validation`**: Active integrity checks via `IntegrityChecker.java`.
 
-### **I. Core Engine & Domain (`/domain`)**
-* **PT:** Regras de negócio imutáveis. Uso de `BigDecimal` para precisão financeira absoluta e **Strategy Pattern** para validações complexas.
-* **EN:** Immutable business rules. Use of `BigDecimal` for absolute financial precision and **Strategy Pattern** for complex validations.
+### **II. Distributed Services (`/services`)**
+* **`/api-gateway`**: Centralized entry point with `TraceabilityFilter.java` and `SecuritySanitizationFilter.java`.
+* **`/audit-service`**: High-security logging via `VaultSentinel.java` and `ChainLinker.java`.
+* **`/discovery-server`**: Service registry using **Netflix Eureka** configuration.
+* **`/message-broker`**: Asynchronous orchestration with `RabbitHoleConfig.java` (RabbitMQ).
+* **`/conversion-service`**: Specialized financial math engine (`MonetaryEngine.java`).
 
-### **II. Infrastructure & Security (`/infrastructure`)**
-* **PT:** **Spring Security + JWT** com RBAC. Criptografia ativa via **AES-256-GCM**. Persistência otimizada com **Spring Data JPA** e L2 Cache.
-* **EN:** **Spring Security + JWT** with RBAC. Active encryption via **AES-256-GCM**. Optimized persistence with **Spring Data JPA** and L2 Cache.
+### **III. Core Engine (`src/main/java/org/engine`)**
+* **`/audit`**: Real-time logging engine with `AuditLogger.java` and `AuditRepository.java`.
+* **`/core`**:
+    * **`/context`**: Global traceability via `CorrelationIdContext.java`.
+    * **`/idempotency`**: Protection against duplicate transactions (`IdempotencyEngine.java`).
+    * **`/resilience`**: Fault tolerance via `CircuitBreaker.java` and `RetryManager.java`.
+    * **`/throttling`**: Active traffic control with `FlowController.java`.
+    * **`/validation`**: High-performance schema and constraint validation.
+    * **`FinanceEngine.java`**: Main execution engine for heavy financial processing.
 
-### **III. Quality Assurance & DevSecOps (`/tests`, `/infra`)**
-* **PT:** Testes de integração reais com **Testcontainers** (Docker-based DB/Redis tests). Automação via **GitHub Actions** (CI/CD).
-* **EN:** Real integration tests with **Testcontainers** (Docker-based DB/Redis tests). Automation via **GitHub Actions** (CI/CD).
+### **IV. Domain & Domain Events (`/domain`)**
+* **`/events`**: Decoupled architecture using `DomainEvent.java` and `EventBridgeMediator.java`.
+* **`/records`**: Immutable data structures via `TransactionRecord.java` and `MonetaryValue.java`.
+* **`/rules`**: Advanced business logic like `InternationalTax.java`.
+* **`/strategy`**: Dynamic algorithm selection for complex scenarios.
 
 ---
 
