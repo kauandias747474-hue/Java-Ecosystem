@@ -1,115 +1,96 @@
-# Java Backend Architecture ☕
+# 🚀 Ultra-Performance Java & Systems Ecosystem ☕
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Focus-High--Performance%20Backend-red?style=for-the-badge" alt="Focus">
-  <img src="https://img.shields.io/badge/Language-Java-007396?style=for-the-badge&logo=java&logoColor=white" alt="Java">
-  <img src="https://img.shields.io/badge/Architecture-Clean%20Code%20|%20SOLID-orange?style=for-the-badge" alt="Architecture">
-  <img src="https://img.shields.io/badge/Security-Immutable%20Audit-blue?style=for-the-badge" alt="Security">
+  <img src="https://img.shields.io/badge/Java-21-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white" alt="Java 21">
+  <img src="https://img.shields.io/badge/Spring--Boot-3.3+-6DB33F?style=for-the-badge&logo=springboot&logoColor=white" alt="Spring Boot">
+  <img src="https://img.shields.io/badge/Quarkus-3.x-FF0000?style=for-the-badge&logo=quarkus&logoColor=white" alt="Quarkus">
+  <img src="https://img.shields.io/badge/Infrastructure-Docker%20|%20K8s-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Infra">
 </p>
 
 ---
 
-### 🌐 Enterprise Solutions & Engineering
-<p align="left">
-  <img src="https://img.shields.io/badge/Languages-🇺🇸%20EN%20|%20🇵🇹%20PT-white?style=flat-square" alt="Languages">
-</p>
+### 🌐 Global Engineering | Engenharia Global
 
-**EN:** This technical ecosystem is dedicated to developing high-performance Java backend solutions. The focus is on the transition between **abstract logical modeling** and **robust system implementation**, prioritizing algorithmic efficiency, modularity, and cryptographic integrity for the global market.
+**EN:** Mission-critical technical ecosystem developed for high-frequency transactions and distributed systems. This repository demonstrates the integration between **Low-Level Software Engineering** and **Enterprise Scalability**, utilizing Java 21 Virtual Threads and a full-stack resilience layer.
 
-**PT:** Este ecossistema técnico é dedicado ao desenvolvimento de soluções backend de alta performance em Java. O foco central é a transição entre a **modelagem lógica abstrata** e a **implementação de sistemas robustos**, priorizando eficiência algorítmica, modularidade e integridade criptográfica para o mercado global.
+**PT:** Ecossistema técnico de missão crítica desenvolvido para transações de alta frequência e sistemas distribuídos. Este repositório demonstra a integração entre **Engenharia de Software de Baixo Nível** e **Escalabilidade Enterprise**, utilizando Java 21 Virtual Threads e uma camada completa de resiliência.
 
 ---
 
-## 🏗️ Core Engineering Pillars | Pilares de Engenharia
+## 🏗️ Technical Pillars | Pilares Técnicos
 
-### 🧠 Algorithmic Complexity | Complexidade Algorítmica ($O(n)$)
-- **EN:** Mathematical validation of every solution before implementation to ensure scalability.
-- **PT:** Validação matemática de cada solução antes da implementação para garantir escalabilidade.
+### 🧠 Computer Science & Performance | Ciência da Computação
+- **EN:** **Big O Optimization:** Algorithms validated for $O(1)$ or $O(log N)$ in critical paths. **Virtual Threads (Loom):** Massive concurrency without kernel thread overhead.
+- **PT:** **Otimização Big O:** Algoritmos validados para $O(1)$ ou $O(log N)$ em caminhos críticos. **Virtual Threads (Loom):** Concorrência massiva sem o overhead de threads do Kernel.
 
-### 💼 Message-Driven Architecture | Arquitetura Orientada a Mensagens
-- **EN:** Implementation of asynchronous communication with **RabbitMQ** for high resilience.
-- **PT:** Implementação de comunicação assíncrona com **RabbitMQ** para alta resiliência.
+### 🛡️ Resilience & Fault Tolerance | Resiliência
+- **EN:** Implementation of **Circuit Breaker, Retry, and Rate Limiter** via **Resilience4j**. **Self-Healing** capabilities through health checks and automated container recovery.
+- **PT:** Implementação de **Circuit Breaker, Retry e Rate Limiter** via **Resilience4j**. Capacidade de **Auto-cura** através de health checks e recuperação automatizada de containers.
 
-### 🧱 Robust Object Design & Cache | Design de Objetos e Cache
-- **EN:** Application of **SOLID**, **Clean Code**, and **Redis** for low-latency performance.
-- **PT:** Aplicação de **SOLID**, **Clean Code** e **Redis** para performance de baixa latência.
+### 📊 Data Integrity & Persistence | Dados e Persistência
+- **EN:** **ACID Transactions:** Financial rigor with **PostgreSQL/MySQL**. **Flyway/Liquibase:** Database versioning (Zero manual DB changes). **Hibernate Envers:** Full audit trail for data changes.
+- **PT:** **Transações ACID:** Rigor financeiro com **PostgreSQL/MySQL**. **Flyway/Liquibase:** Versionamento de banco de dados (Zero mudanças manuais). **Hibernate Envers:** Trilha de auditoria completa para alterações de dados.
 
-### ☁️ Distributed Infrastructure | Infraestrutura Distribuída
-- **EN:** Orchestration of microservices using Docker for high availability and portability.
-- **PT:** Orquestração de microsserviços utilizando Docker para alta disponibilidade e portabilidade.
+### ⛓️ Distributed Systems | Sistemas Distribuídos
+- **EN:** **Message-Driven:** Asynchronous communication via **Apache Kafka** or **RabbitMQ**. **Distributed Cache:** Low-latency performance using **Redis Streams/Bitmaps**.
+- **PT:** **Message-Driven:** Comunicação assíncrona via **Apache Kafka** ou **RabbitMQ**. **Cache Distribuído:** Performance de baixa latência usando **Redis Streams/Bitmaps**.
 
 ---
 
 ## 📂 Project Structure | Estrutura do Projeto
 
-### **I. Core Engines & Domain (`/core`, `/domain`)**
-* **`domain/`**: 
-    * **PT:** Regras puras e imutáveis. `MonetaryValue.java` para precisão financeira e `Events/` para desacoplamento.
-    * **EN:** Pure and immutable rules. `MonetaryValue.java` for financial precision and `Events/` for decoupling.
-* **`core/`**: 
-    * **PT:** Motores de execução. `IdempotencyEngine.java` contra duplicidade e `Resilience/` com Circuit Breakers.
-    * **EN:** Execution engines. `IdempotencyEngine.java` against duplication and `Resilience/` with Circuit Breakers.
+### **I. Core Engine & Domain (`/domain`)**
+* **PT:** Regras de negócio imutáveis. Uso de `BigDecimal` para precisão financeira absoluta e **Strategy Pattern** para validações complexas.
+* **EN:** Immutable business rules. Use of `BigDecimal` for absolute financial precision and **Strategy Pattern** for complex validations.
 
-### **II. Infrastructure & Active Security (`/infrastructure`)**
-* **`security/`**: 
-    * **PT:** Proteção ativa via `DataProtector.java` (AES-256) e `InputCleaner.java` (Sanitização).
-    * **EN:** Active protection via `DataProtector.java` (AES-256) and `InputCleaner.java` (Sanitization).
-* **`docker/`**: 
-    * **PT:** Infraestrutura como código para padronização de ambientes.
-    * **EN:** Infrastructure as code for environment standardization.
-* **`services/`**: 
-    * **PT:** Microsserviços: API Gateway, Discovery Server, Message Broker (RabbitMQ) e Redis.
-    * **EN:** Microservices: API Gateway, Discovery Server, Message Broker (RabbitMQ), and Redis.
+### **II. Infrastructure & Security (`/infrastructure`)**
+* **PT:** **Spring Security + JWT** com RBAC. Criptografia ativa via **AES-256-GCM**. Persistência otimizada com **Spring Data JPA** e L2 Cache.
+* **EN:** **Spring Security + JWT** with RBAC. Active encryption via **AES-256-GCM**. Optimized persistence with **Spring Data JPA** and L2 Cache.
 
-### **III. Immutable Audit Chain (`/security/audit/chain`) ⛓️**
-* **PT:** `AuditChainManager.java` orquestra uma trilha de auditoria onde cada elo é vinculado ao anterior via **SHA-256**.
-* **EN:** `AuditChainManager.java` orchestrates an audit trail where each link is tied to the previous one via **SHA-256**.
+### **III. Quality Assurance & DevSecOps (`/tests`, `/infra`)**
+* **PT:** Testes de integração reais com **Testcontainers** (Docker-based DB/Redis tests). Automação via **GitHub Actions** (CI/CD).
+* **EN:** Real integration tests with **Testcontainers** (Docker-based DB/Redis tests). Automation via **GitHub Actions** (CI/CD).
 
 ---
 
-## 🛡️ Resilience & Security Ecosystem | Resiliência e Segurança
+## 🛠️ Full Tech Stack | Ferramentas de Elite
 
-### ⚡ Self-Healing | Auto-Cura
-
-* **PT:** Proteção contra falhas em cascata via **Circuit Breaker** e **Retry Manager**.
-* **EN:** Cascading failure protection via **Circuit Breaker** and **Retry Manager**.
-
-### ⛓️ Immutable Audit | Auditoria Imutável
-* **PT:** Torna impossível alterar o histórico de logs sem quebrar a integridade criptográfica da corrente.
-* **EN:** Makes it impossible to alter log history without breaking the chain's cryptographic integrity.
-
-### 🚦 Traffic Control | Controle de Tráfego
-* **PT:** Defesa ativa via **Throttling** e **Rate Limiting** para proteger a disponibilidade do servidor.
-* **EN:** Active defense via **Throttling** and **Rate Limiting** to protect server availability.
+| Category / Categoria | Technology / Tecnologia |
+| :--- | :--- |
+| **Runtime** | Java 21, Spring Boot 3.3+, Quarkus (GraalVM Native) |
+| **Data / Persistence** | PostgreSQL, MySQL, Redis, Flyway / Liquibase |
+| **Messaging / Stream** | Apache Kafka, RabbitMQ |
+| **Testing** | JUnit 5, Mockito, Testcontainers, Jacoco |
+| **Infrastructure** | Docker, Docker-Compose, Kubernetes (K8s), LocalStack |
+| **Observability** | Prometheus, Grafana, Micrometer, ELK Stack |
+| **Documentation** | Swagger / OpenAPI 3.0 |
 
 ---
 
-## 💡 Engineering Best Practices (Anti-Error)
-
-> **PT:** Nunca utilizamos `new BigDecimal(double)`. Usamos `new BigDecimal(String)` para garantir precisão exata.
->
-> **EN:** We never use `new BigDecimal(double)`. We use `new BigDecimal(String)` to ensure exact decimal precision.
-
----
-
-## 🛠️ Tech Stack | Tecnologias
-* **Language:** Java 21 (Virtual Threads).
-* **Messaging:** RabbitMQ.
-* **Cache:** Redis.
-* **DB:** PostgreSQL 15.
-* **Infra:** Docker & Docker-Compose.
-
----
 
 ## 👨‍💻 Author | Autoria
 **Kauan Oliveira** - *Systems & Security Engineer*
 
-**PT-BR:** Focado em Freelance de Alta Performance e Arquiteturas Robustas.  
-**EN-US:** Focused on High-Performance Freelancing and Robust Architectures.
+**EN:** Professional specialized in distributed systems, low-level performance, and high-availability backend architecture.  
+**PT:** Profissional especializado em sistemas distribuídos, performance de baixo nível e arquitetura backend de alta disponibilidade.
 
 ### 📩 Contact / Contato
 - **LinkedIn:** [Kauan Oliveira](https://www.linkedin.com/in/kauan-oliveira-324264378/)
 - **GitHub:** [kauandias747474-hue](https://github.com/kauandias747474-hue)
 
 ---
-*Developed in 2026 / Desenvolvido em 2026*
+
+## 🚀 How to Run | Como Executar
+
+```bash
+# 1. Clone the repository | Clone o repositório
+git clone [https://github.com/kauandias747474-hue/java-backend-architecture](https://github.com/kauandias747474-hue/java-backend-architecture)
+
+# 2. Deploy the entire ecosystem (App, DB, Redis, Kafka)
+# 2. Suba todo o ecossistema (App, DB, Redis, Kafka)
+docker-compose up -d
+
+# 3. Access API Documentation | Acesse a documentação da API
+# http://localhost:8080/swagger-ui.html
+
+---
