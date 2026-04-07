@@ -42,7 +42,6 @@
 * **`/docker`**: Infrastructure as Code (IaC) with `docker-compose.yml`.
 * **`/terraform`**: Cloud provisioning manifests (AWS/Azure).
 * **`/kubernetes`**: Orchestration via K8s (Deployments/Services).
-* **`/encryption`**: Active data protection via `DataProtector.java` (AES-256-GCM).
 * **`/observability`**: Advanced monitoring with `HealthCheckProvider.java` and `LogMasker.java`.
 * **`/persistence`**: Intelligent storage management with `SchemaVersionChecker.java`.
 * **`/security`**: 
