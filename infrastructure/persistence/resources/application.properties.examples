@@ -1,1 +1,4 @@
-
+spring.datasource.url=jdbc:postgresql://localhost:5432/nome_do_banco
+spring.datasource.username=seu_usuario
+spring.datasource.password=sua_senha
+app.security.master-key=COLOQUE_AQUI_UMA_CHAVE_DE_32_CARACTERES
