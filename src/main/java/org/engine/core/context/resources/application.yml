@@ -1,1 +1,14 @@
+spring:
+  application:
+    name: modulo-java
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: finance-group
+      auto-offset-reset: earliest
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: prometheus, health, info
