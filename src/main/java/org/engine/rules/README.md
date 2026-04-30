@@ -1,4 +1,4 @@
-# 🏛️ Business Rules Engine: International Tax (Case Study)
+#  Business Rules Engine: International Tax (Case Study)
 
 > **[PT-BR]** Proof of Concept (PoC) focada em desacoplamento de regras fiscais complexas através de Clean Code e Design Patterns.
 >
@@ -10,22 +10,22 @@
 
 Este projeto foi construído aplicando os princípios do **Uncle Bob (Robert C. Martin)** e **Joshua Bloch**, focando em:
 
-### 1. S.O.L.I.D. Principles 🧩
+### 1. S.O.L.I.D. Principles 
 * **Single Responsibility (SRP):** O motor (`TaxEngine`) apenas gerencia o fluxo; cada estratégia (`TaxStrategy`) cuida de sua regra específica.
 * **Open/Closed (OCP):** Novas legislações tributárias são adicionadas sem modificar o código fonte existente.
 * **Dependency Inversion (DIP):** O sistema depende de abstrações (interfaces), não de implementações concretas.
 
-### 2. Engenharia Defensiva & Fail-Fast 🛡️
+### 2. Engenharia Defensiva & Fail-Fast 
 * **Validação Precoce:** O sistema valida a integridade dos dados (nulos ou negativos) no momento da criação do objeto.
 * **Imutabilidade:** Uso de `Java Records` para garantir que um cálculo fiscal, uma vez realizado, jamais seja alterado (**Thread-Safety**).
 
-### 3. Legibilidade e Manutenibilidade 📖
+### 3. Legibilidade e Manutenibilidade 
 * **Eliminação de Hardcoding:** Regras de negócio são injetadas, tornando o código principal limpo e focado no domínio.
 * **Nomes Significativos:** Variáveis e métodos que expressam claramente sua intenção, eliminando a necessidade de comentários excessivos.
 
 ---
 
-## 🏗️ Pilares Técnicos / Technical Pillars
+## Pilares Técnicos / Technical Pillars
 
 * **Precisão Bancária:** Uso estrito de `BigDecimal` para evitar erros de arredondamento de ponto flutuante.
 * **High Performance:** Processamento em massa utilizando `Parallel Streams` para otimização de CPU em grandes lotes de faturas.
@@ -33,7 +33,7 @@ Este projeto foi construído aplicando os princípios do **Uncle Bob (Robert C. 
 
 ---
 
-## 🛠️ Tecnologias / Tech Stack
+##  Tecnologias / Tech Stack
 
 | Conceito / Concept | Implementação / Implementation |
 | :--- | :--- |
