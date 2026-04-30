@@ -39,7 +39,6 @@
 ## 📂 Project Architecture | Estrutura do Ecossistema
 
 ### **I. Infrastructure & Security (`/infrastructure`)**
-* **`/docker`**: Infrastructure as Code (IaC) with `docker-compose.yml`.
 * **`/terraform`**: Cloud provisioning manifests (AWS/Azure).
 * **`/kubernetes`**: Orchestration via K8s (Deployments/Services).
 * **`/observability`**: Advanced monitoring with `HealthCheckProvider.java` and `LogMasker.java`.
