@@ -100,7 +100,7 @@
 
 ---
 
-## 🚀 How to Run | Como Executar
+##  How to Run | Como Executar
 
 ```bash
 # 1. Clone the repository | Clone o repositório
